@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NewCoinStatsApp</string>
+    <string name="favorite_title_text">Favorite</string>
+    <string name="all_title_text">All</string>
+</resources>
