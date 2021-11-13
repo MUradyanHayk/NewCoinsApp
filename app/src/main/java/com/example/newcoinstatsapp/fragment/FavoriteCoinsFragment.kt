@@ -30,7 +30,7 @@ class FavoriteCoinsFragment : Fragment() {
     private fun createRecyclerView() {
         recyclerView = screen?.findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        coinsAdapter = CoinsAdapter(requireContext(), viewModel?.getFavoriteCoins()?.value)
+        coinsAdapter = CoinsAdapter(requireContext(), true, viewModel?.getFavoriteCoins()?.value)
         recyclerView?.adapter = coinsAdapter
     }
 

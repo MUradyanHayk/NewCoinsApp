@@ -17,11 +17,11 @@ interface CoinsAdapterDelegate {
     fun onItemClick(identifier: String?)
 }
 
-class CoinsAdapter(val context: Context, var coinList: MutableList<Coin>?) : RecyclerView.Adapter<ViewHolder>() {
+class CoinsAdapter(val context: Context, var isInFavoriteScreen: Boolean, var coinList: MutableList<Coin>?) : RecyclerView.Adapter<ViewHolder>() {
     var delegate: WeakReference<CoinsAdapterDelegate>? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val item = LayoutInflater.from(context).inflate(R.layout.coin_item, parent, false)
-        return ViewHolder(item, context)
+        return ViewHolder(item, context, isInFavoriteScreen)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -39,7 +39,7 @@ class CoinsAdapter(val context: Context, var coinList: MutableList<Coin>?) : Rec
     }
 }
 
-class ViewHolder(itemView: View, val context: Context) : RecyclerView.ViewHolder(itemView) {
+class ViewHolder(itemView: View, val context: Context, val isInFavoriteScreen: Boolean = false) : RecyclerView.ViewHolder(itemView) {
     private var nameTextView: TextView? = null
     private var priceTextView: TextView? = null
     private var imageview: ImageView? = null
@@ -86,5 +86,13 @@ class ViewHolder(itemView: View, val context: Context) : RecyclerView.ViewHolder
         this.price = coin.price ?: ""
         this.icon = coin.icon ?: ""
         this.isChecked = coin.isFavorite
+
+        if (isInFavoriteScreen) {
+            this.checkBox?.visibility = View.GONE
+            itemView.setBackgroundResource(R.drawable.not_click_bg)
+        } else {
+            itemView.setBackgroundResource(R.drawable.item_click_background)
+            this.checkBox?.visibility = View.VISIBLE
+        }
     }
 }

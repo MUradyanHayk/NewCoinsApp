@@ -33,7 +33,7 @@ class AllCoinsFragment : Fragment(), CoinsAdapterDelegate {
     private fun createRecyclerView() {
         recyclerView = screen?.findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        coinsAdapter = CoinsAdapter(requireContext(), viewModel?.getAllCoins()?.value)
+        coinsAdapter = CoinsAdapter(requireContext(), false, viewModel?.getAllCoins()?.value)
         coinsAdapter?.delegate = WeakReference(this)
         recyclerView?.adapter = coinsAdapter
     }
